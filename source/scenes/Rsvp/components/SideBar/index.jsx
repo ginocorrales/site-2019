@@ -40,22 +40,16 @@ const SideBar = (props: SideBarProps) => {
     <section className="sidebar">
       <ul>
         <SideBarLink index={0} pane={pane}>
-          Student Info
+          General
         </SideBarLink>
         <SideBarLink index={1} pane={pane}>
-          Personal Info
+          Language Experience
         </SideBarLink>
         <SideBarLink index={2} pane={pane}>
-          Professional Info
+          Tech Interests
         </SideBarLink>
         <SideBarLink index={3} pane={pane}>
-          Experience
-        </SideBarLink>
-        <SideBarLink index={4} pane={pane}>
-          Other
-        </SideBarLink>
-        <SideBarLink index={5} pane={pane}>
-          Team
+          Open Source
         </SideBarLink>
       </ul>
     </section>

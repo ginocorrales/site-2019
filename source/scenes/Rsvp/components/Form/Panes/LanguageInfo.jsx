@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
 
-import TextField from 'components/TextField';
+import Slider from 'components/Slider';
+
 import FormTransition from '../FormTransition';
 import FormContext from '../../../FormContext';
 
@@ -9,19 +10,19 @@ type Props = {
   visible: boolean,
 };
 
-const TeamInfo = (props: Props) => {
+const LanguageInfo = (props: Props) => {
   const { visible } = props;
   return (
     <FormTransition visible={visible} uid="student-info">
       <FormContext.Consumer>
-        {({ data, registerField }) => (
+        {({ data, errors, registerField }) => (
           <div className="scrolled-form">
-            <TextField
-              label="GitHub usernames of team members"
-              name="teamMembers"
-              placeholder="Type in usernames, separate with commas"
-              value={data.teamMembers}
-              onChange={registerField('teamMembers')}
+            <Slider
+              label="Python"
+              onChange={registerField('python')}
+              index={data.python}
+              error={errors.python}
+              errorMessage="Rate your skill"
             />
           </div>
         )}
@@ -30,4 +31,4 @@ const TeamInfo = (props: Props) => {
   );
 };
 
-export default TeamInfo;
+export default LanguageInfo;

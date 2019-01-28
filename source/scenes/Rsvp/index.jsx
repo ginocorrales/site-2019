@@ -29,27 +29,11 @@ type State = {
 };
 
 const INITIAL_REGISTRATION_STATE = {
-  school: -1,
-  major: -1,
-  graduationYear: '',
-  shirtSize: -1,
-  transportation: -1,
-  diet: [],
+  isAttending: -1,
   phone: '',
-  age: '',
-  gender: -1,
-  isBeginner: -1,
-  linkedin: '',
-  resume: null,
-  interests: [],
-  skills: '',
-  priorAttendance: -1,
-  extraInfo: '',
-  teamMembers: '',
-  versionControl: -1,
-  pullRequest: -1,
-  yearsExperience: '',
-  technicalSkills: '',
+  diet: [],
+  transportation: -1,
+  python: 0,
 };
 
 class Registration extends Component<Props, State> {

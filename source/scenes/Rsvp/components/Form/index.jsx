@@ -8,13 +8,8 @@ import oceanCurrents from 'assets/Registration/oceanCurrents.svg';
 import fish1 from 'assets/Registration/fish_1.png';
 import fish2 from 'assets/Registration/fish_2.png';
 
-import PersonalInfo from './Panes/PersonalInfo';
-import StudentInfo from './Panes/StudentInfo';
-import ProfessionalInfo from './Panes/ProfessionalInfo';
-import BeginnerInfo from './Panes/BeginnerInfo';
-import OtherInfo from './Panes/OtherInfo';
-import TeamInfo from './Panes/TeamInfo';
-import Submit from './Panes/Submit';
+import GeneralInfo from './Panes/GeneralInfo';
+import LanguageInfo from './Panes/LanguageInfo';
 import './styles.scss';
 
 const NUM_PANES = 7;
@@ -82,17 +77,12 @@ class ScrollableForm extends Component<Props> {
 
     return (
       <section className="scrollable-form">
-        <h1>Registration</h1>
+        <h1>RSVP</h1>
 
         <div id="form-view">
           <div id="form-view-container">
-            <StudentInfo visible={pane === 0} />
-            <PersonalInfo visible={pane === 1} />
-            <ProfessionalInfo visible={pane === 2} />
-            <BeginnerInfo visible={pane === 3} />
-            <OtherInfo visible={pane === 4} />
-            <TeamInfo visible={pane === 5} />
-            <Submit visible={pane === 6} />
+            <GeneralInfo visible={pane === 0} />
+            <LanguageInfo visible={pane === 1} />
           </div>
 
           <div className="nav-buttons">
