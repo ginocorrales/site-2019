@@ -1,9 +1,10 @@
 export const range = [
-  { text: '1 - Never heard of it', value: 1 },
-  { text: "2 - Heard of it, haven't worked with it", value: 2 },
-  { text: '3 - Worked with it a few times', value: 3 },
-  { text: '4 - Worked with it quite a bit before', value: 4 },
-  { text: '5 - Regularly work with it', value: 5 },
+  { text: '1', value: 1 },
+  { text: '2', value: 2 },
+  { text: '3', value: 3 },
+  { text: '4', value: 4 },
+  { text: '5', value: 5 },
+  { text: '6', value: 6 },
 ];
 
 export const yn = [{ text: 'Yes', value: true }, { text: 'No', value: false }];

@@ -34,6 +34,19 @@ const INITIAL_REGISTRATION_STATE = {
   diet: [],
   transportation: -1,
   python: 0,
+  javascript: 0,
+  java: 0,
+  c: 0,
+  go: 0,
+  ruby: 0,
+  rust: 0,
+  dataScience: -1,
+  webDev: -1,
+  systems: -1,
+  appDev: -1,
+  hardware: -1,
+  devTools: -1,
+  openSource: '',
 };
 
 class Registration extends Component<Props, State> {

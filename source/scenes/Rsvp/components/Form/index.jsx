@@ -10,9 +10,13 @@ import fish2 from 'assets/Registration/fish_2.png';
 
 import GeneralInfo from './Panes/GeneralInfo';
 import LanguageInfo from './Panes/LanguageInfo';
+import TechInterests from './Panes/TechInterests';
+import OpenSource from './Panes/OpenSource';
+import Submit from '../../../../components/Form/Panes/Submit';
+
 import './styles.scss';
 
-const NUM_PANES = 7;
+const NUM_PANES = 5;
 
 type Props = {
   pane: number,
@@ -83,6 +87,9 @@ class ScrollableForm extends Component<Props> {
           <div id="form-view-container">
             <GeneralInfo visible={pane === 0} />
             <LanguageInfo visible={pane === 1} />
+            <TechInterests visible={pane === 2} />
+            <OpenSource visible={pane === 3} />
+            <Submit visible={pane === 4} />
           </div>
 
           <div className="nav-buttons">
