@@ -9,6 +9,7 @@ import FormContext from './FormContext';
 import SideBar from './components/SideBar';
 import ScrollableForm from './components/Form';
 import { required, validatePane } from './components/Form/check';
+import { checkUnique } from './Form/inputValidators';
 import './styles.scss';
 
 import type { RegistrationData } from './FormContext';
@@ -40,11 +41,11 @@ const INITIAL_REGISTRATION_STATE = {
   ruby: 0,
   rust: 0,
   dataScience: -1,
-  webDev: -1,
-  systems: -1,
-  appDev: -1,
-  hardware: -1,
-  devTools: -1,
+  webDev: -2,
+  systems: -3,
+  appDev: -4,
+  hardware: -5,
+  devTools: -6,
   openSource: '',
 };
 
@@ -111,7 +112,7 @@ class Registration extends Component<Props, State> {
   }
 
   registerField: (string, ?(string) => boolean) => string => void;
-  registerField(field: string, validator?: string => boolean) {
+  registerField(field: string, validator?: string => boolean, isTechInterest?: boolean) {
     /* eslint-disable react/destructuring-assignment */
     // Resume uploads separately from rest of data, so we will track
     // what has and has not been updated, and only call the necessary
@@ -138,6 +139,66 @@ class Registration extends Component<Props, State> {
           e[field] = false;
         } else {
           e[field] = !validator(value);
+        }
+        if (isTechInterest) {
+          switch (field) {
+            case 'dataScience':
+              e[field] = !checkUnique(prevState.data.dataScience, [
+                prevState.data.webDev,
+                prevState.data.systems,
+                prevState.data.appDev,
+                prevState.data.hardware,
+                prevState.data.devTools,
+              ]);
+              break;
+            case 'webDev':
+              e[field] = !checkUnique(prevState.data.webDev, [
+                prevState.data.dataScience,
+                prevState.data.systems,
+                prevState.data.appDev,
+                prevState.data.hardware,
+                prevState.data.devTools,
+              ]);
+              break;
+            case 'systems':
+              e[field] = !checkUnique(prevState.data.systems, [
+                prevState.data.dataScience,
+                prevState.data.webDev,
+                prevState.data.appDev,
+                prevState.data.hardware,
+                prevState.data.devTools,
+              ]);
+              break;
+            case 'appDev':
+              e[field] = !checkUnique(prevState.data.appDev, [
+                prevState.data.dataScience,
+                prevState.data.webDev,
+                prevState.data.systems,
+                prevState.data.hardware,
+                prevState.data.devTools,
+              ]);
+              break;
+            case 'hardware':
+              e[field] = !checkUnique(prevState.data.hardware, [
+                prevState.data.dataScience,
+                prevState.data.webDev,
+                prevState.data.systems,
+                prevState.data.appDev,
+                prevState.data.devTools,
+              ]);
+              break;
+            case 'devTools':
+              e[field] = !checkUnique(prevState.data.devTools, [
+                prevState.data.dataScience,
+                prevState.data.webDev,
+                prevState.data.systems,
+                prevState.data.appDev,
+                prevState.data.hardware,
+              ]);
+              break;
+            default:
+              e[field] = false;
+          }
         }
         return {
           data: Object.assign({}, prevState.data, d),

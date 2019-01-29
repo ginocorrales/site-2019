@@ -23,7 +23,7 @@ const LanguageInfo = (props: Props) => {
               label="Data Science"
               placeholder="1-6"
               items={range}
-              onSelect={registerField('dataScience')}
+              onSelect={registerField('dataScience', null, true)}
               disableInput
               index={data.dataScience}
               error={errors.dataScience}
@@ -33,7 +33,7 @@ const LanguageInfo = (props: Props) => {
               label="Web Development"
               placeholder="1-6"
               items={range}
-              onSelect={registerField('webDev')}
+              onSelect={registerField('webDev', null, true)}
               disableInput
               index={data.webDev}
               error={errors.webDev}
@@ -43,7 +43,7 @@ const LanguageInfo = (props: Props) => {
               label="Systems Programming"
               placeholder="1-6"
               items={range}
-              onSelect={registerField('systems')}
+              onSelect={registerField('systems', null, true)}
               disableInput
               index={data.systems}
               error={errors.systems}
@@ -53,7 +53,7 @@ const LanguageInfo = (props: Props) => {
               label="App Development"
               placeholder="1-6"
               items={range}
-              onSelect={registerField('appDev')}
+              onSelect={registerField('appDev', null, true)}
               disableInput
               index={data.appDev}
               error={errors.appDev}
@@ -63,7 +63,7 @@ const LanguageInfo = (props: Props) => {
               label="Hardware"
               placeholder="1-6"
               items={range}
-              onSelect={registerField('hardware')}
+              onSelect={registerField('hardware', null, true)}
               disableInput
               index={data.hardware}
               error={errors.hardware}
@@ -73,7 +73,7 @@ const LanguageInfo = (props: Props) => {
               label="Development Tools"
               placeholder="1-6"
               items={range}
-              onSelect={registerField('devTools')}
+              onSelect={registerField('devTools', null, true)}
               disableInput
               index={data.devTools}
               error={errors.devTools}
