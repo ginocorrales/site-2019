@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Loader from 'scenes/Loader';
 import { getGithubOAuthURL } from 'services/api/auth';
-import { getRegistrationData, touchResume, touchData } from 'services/registration/actions';
+import { getRsvpData, touchData } from 'services/rsvp/actions';
 import FormContext from './FormContext';
 import SideBar from './components/SideBar';
 import ScrollableForm from './components/Form';
@@ -17,9 +17,8 @@ type Props = {
   jwt: ?string,
   regValid: boolean,
   regData: ?Object,
-  checkRegistration: () => void,
+  checkRsvp: () => void,
   touchData: () => void,
-  touchResume: () => void,
 };
 
 type State = {
@@ -65,12 +64,12 @@ class Registration extends Component<Props, State> {
   }
 
   componentDidMount() {
-    const { regValid, regData, checkRegistration, jwt } = this.props;
+    const { regValid, regData, checkRsvp, jwt } = this.props;
     if (jwt) {
       if (regValid) {
         this.initializeState(regData);
       } else {
-        checkRegistration();
+        checkRsvp();
       }
     }
   }
@@ -117,10 +116,7 @@ class Registration extends Component<Props, State> {
     // Resume uploads separately from rest of data, so we will track
     // what has and has not been updated, and only call the necessary
     // routes
-    let dirtyFn = this.props.touchData;
-    if (field === 'resume') {
-      dirtyFn = this.props.touchResume;
-    }
+    const dirtyFn = this.props.touchData;
     /* eslint-enable react/destructuring-assignment */
 
     // This function has closure over the field, validator function,
@@ -180,8 +176,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  checkRegistration: () => dispatch(getRegistrationData()),
-  touchResume: () => dispatch(touchResume()),
+  checkRsvp: () => dispatch(getRsvpData()),
   touchData: () => dispatch(touchData()),
 });
 

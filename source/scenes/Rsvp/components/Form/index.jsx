@@ -12,7 +12,7 @@ import GeneralInfo from './Panes/GeneralInfo';
 import LanguageInfo from './Panes/LanguageInfo';
 import TechInterests from './Panes/TechInterests';
 import OpenSource from './Panes/OpenSource';
-import Submit from '../../../../components/Form/Panes/Submit';
+import Submit from './Panes/Submit';
 
 import './styles.scss';
 
