@@ -1,10 +1,18 @@
-import { RSVP_REQUEST, RSVP_RESPONSE, TOUCH_DATA, INVALIDATE_DATA } from './actions';
+import {
+  RSVP_REQUEST,
+  RSVP_RESPONSE,
+  TOUCH_DATA,
+  INVALIDATE_DATA,
+  DECISION_RESPONSE,
+} from './actions';
 
 const initialState = {
   fetching: false,
   valid: false,
   data: null,
   dataDirty: false,
+  accepted: null,
+  decisionValid: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +31,11 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { dataDirty: true });
     case INVALIDATE_DATA:
       return Object.assign({}, initialState);
+    case DECISION_RESPONSE:
+      return Object.assign({}, state, {
+        decisionValid: true,
+        accepted: action.decision === 'ACCEPTED',
+      });
     default:
       return state;
   }

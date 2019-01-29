@@ -9,6 +9,7 @@ type Props = {
   onChange: number => void,
   error?: boolean,
   errorMessage?: string,
+  initialValue?: number,
 };
 
 type State = {
@@ -21,6 +22,9 @@ type State = {
 class Slider extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    const { initialValue } = this.props;
+
     this.handleDrag = this.handleDrag.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -28,7 +32,7 @@ class Slider extends React.Component<Props, State> {
     this.endRef = React.createRef();
 
     this.state = {
-      left: 0,
+      left: initialValue !== undefined ? initialValue * 10 : 0,
     };
   }
 

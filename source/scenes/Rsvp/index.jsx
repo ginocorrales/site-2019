@@ -4,22 +4,24 @@ import { connect } from 'react-redux';
 
 import Loader from 'scenes/Loader';
 import { getGithubOAuthURL } from 'services/api/auth';
-import { getRsvpData, touchData } from 'services/rsvp/actions';
+import { getRsvpData, touchData, getDecision } from 'services/rsvp/actions';
 import FormContext from './FormContext';
 import SideBar from './components/SideBar';
 import ScrollableForm from './components/Form';
 import { required, validatePane } from './components/Form/check';
-import { checkUnique } from './Form/inputValidators';
-import './styles.scss';
+import { checkUnique } from './components/Form/inputValidators';
 
 import type { RegistrationData } from './FormContext';
 
 type Props = {
   jwt: ?string,
-  regValid: boolean,
-  regData: ?Object,
+  rsvpValid: boolean,
+  rsvpData: ?Object,
+  checkDecision: () => void,
   checkRsvp: () => void,
   touchData: () => void,
+  decisionValid: boolean,
+  accepted: boolean,
 };
 
 type State = {
@@ -65,21 +67,24 @@ class Registration extends Component<Props, State> {
   }
 
   componentDidMount() {
-    const { regValid, regData, checkRsvp, jwt } = this.props;
+    const { rsvpValid, rsvpData, checkRsvp, jwt, checkDecision, decisionValid } = this.props;
     if (jwt) {
-      if (regValid) {
-        this.initializeState(regData);
+      if (rsvpValid) {
+        this.initializeState(rsvpData);
       } else {
         checkRsvp();
+      }
+      if (!decisionValid) {
+        checkDecision();
       }
     }
   }
 
   componentDidUpdate(prevProps: Props) {
     // Check for registration request to go from invalid to valid
-    const { regValid, regData } = this.props;
-    if (!prevProps.regValid && regValid) {
-      this.initializeState(regData);
+    const { rsvpValid, rsvpData } = this.props;
+    if (!prevProps.rsvpValid && rsvpValid) {
+      this.initializeState(rsvpData);
     }
   }
 
@@ -103,10 +108,10 @@ class Registration extends Component<Props, State> {
   }
 
   initializeState: (?Object) => void;
-  initializeState(regData) {
-    if (regData !== null) {
+  initializeState(rsvpData) {
+    if (rsvpData !== null) {
       this.setState({
-        data: regData,
+        data: rsvpData,
       });
     }
   }
@@ -209,15 +214,18 @@ class Registration extends Component<Props, State> {
   }
 
   render() {
-    const { jwt, regValid } = this.props;
+    const { jwt, rsvpValid, decisionValid, accepted } = this.props;
     const { pane, data, errors } = this.state;
 
     if (!jwt) {
       window.location.replace(getGithubOAuthURL('/register'));
       return null;
     }
-    if (!regValid) {
+    if (!rsvpValid || !decisionValid) {
       return <Loader />;
+    }
+    if (!accepted) {
+      return <h1>RSVP available upon acceptance</h1>;
     }
     return (
       <div className="registration">
@@ -232,12 +240,13 @@ class Registration extends Component<Props, State> {
 
 const mapStateToProps = state => ({
   jwt: state.auth.jwt,
-  regValid: state.registration.valid,
-  regData: state.registration.data,
+  rsvpValid: state.rsvp.valid,
+  rsvpData: state.rsvp.data,
 });
 
 const mapDispatchToProps = dispatch => ({
   checkRsvp: () => dispatch(getRsvpData()),
+  checkDecision: () => dispatch(getDecision()),
   touchData: () => dispatch(touchData()),
 });
 

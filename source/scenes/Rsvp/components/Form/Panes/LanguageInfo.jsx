@@ -27,49 +27,49 @@ const LanguageInfo = (props: Props) => {
               <Slider
                 label="Python"
                 onChange={registerField('python')}
-                index={data.python}
+                initialValue={data.python}
                 error={errors.python}
                 errorMessage="Rate your skill"
               />
               <Slider
                 label="Javascript"
                 onChange={registerField('javascript')}
-                index={data.javascript}
+                initialValue={data.javascript}
                 error={errors.javascript}
                 errorMessage="Rate your skill"
               />
               <Slider
                 label="Java"
                 onChange={registerField('java')}
-                index={data.java}
+                initialValue={data.java}
                 error={errors.java}
                 errorMessage="Rate your skill"
               />
               <Slider
                 label="C/C++"
                 onChange={registerField('c')}
-                index={data.c}
+                initialValue={data.c}
                 error={errors.c}
                 errorMessage="Rate your skill"
               />
               <Slider
                 label="Go"
                 onChange={registerField('go')}
-                index={data.go}
+                initialValue={data.go}
                 error={errors.go}
                 errorMessage="Rate your skill"
               />
               <Slider
                 label="Ruby"
                 onChange={registerField('ruby')}
-                index={data.ruby}
+                initialValue={data.ruby}
                 error={errors.ruby}
                 errorMessage="Rate your skill"
               />
               <Slider
                 label="Rust"
                 onChange={registerField('rust')}
-                index={data.rust}
+                initialValue={data.rust}
                 error={errors.rust}
                 errorMessage="Rate your skill"
               />

@@ -2,6 +2,7 @@ import * as selectOptions from 'scenes/Rsvp/components/Form/Panes/selectOptions'
 import store from '../store';
 
 const rsvpRoute = `${process.env.API_ENDPOINT}/rsvp`;
+const decisionRoute = `${process.env.API_ENDPOINT}/decision`;
 
 // Read frontend data from form state, serialize to be compatible with api spec
 const serialize = data => {
@@ -99,4 +100,20 @@ export function fetchRsvpData() {
       return response.json();
     })
     .then(data => deserialize(data));
+}
+
+export function fetchDecision() {
+  return fetch(`${decisionRoute}/`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: store.getState().auth.jwt,
+    },
+  }).then(response => {
+    if (response.status >= 400) {
+      throw new Error(response);
+    }
+    return response.json();
+  });
 }
