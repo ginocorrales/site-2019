@@ -12,17 +12,18 @@ const personal = [
   { field: 'gender', required: true },
 ];
 const professional = [
-  { field: 'isBeginner', required: true },
   { field: 'linkedin', required: false },
   { field: 'resume', required: true },
   { field: 'interests', required: false },
   { field: 'skills', required: false },
+  { field: 'technicalSkills', required: false },
 ];
 const beginner = [
+  { field: 'isBeginner', required: true },
+  { field: 'isOSContributor', required: true },
   { field: 'versionControl', required: true },
   { field: 'pullRequest', required: true },
   { field: 'yearsExperience', required: true },
-  { field: 'technicalSkills', required: false },
 ];
 const other = [
   { field: 'priorAttendance', required: true },

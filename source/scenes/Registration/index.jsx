@@ -46,6 +46,7 @@ const INITIAL_REGISTRATION_STATE = {
   priorAttendance: -1,
   extraInfo: '',
   teamMembers: '',
+  isOSContributor: -1,
   versionControl: -1,
   pullRequest: -1,
   yearsExperience: '',
@@ -93,7 +94,7 @@ class Registration extends Component<Props, State> {
     this.setState(prevState => {
       const { data, pane, errors } = prevState;
       const missing = required(pane, data);
-      if (missing.length === 0 && validatePane(pane, errors)) {
+      if ((missing.length === 0 && validatePane(pane, errors)) || newPane < pane) {
         return { pane: newPane };
       }
 
@@ -159,7 +160,7 @@ class Registration extends Component<Props, State> {
     const { pane, data, errors } = this.state;
 
     if (!jwt) {
-      window.location.replace(getGithubOAuthURL('/register'));
+      window.location.replace(getGithubOAuthURL('/apply'));
       return null;
     }
     if (!regValid) {
