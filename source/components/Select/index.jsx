@@ -42,7 +42,7 @@ let id = 0;
 class Select extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    const initialValue = props.index < 0 ? '' : props.items[props.index].text;
+    const initialValue = props.index === -1 ? '' : props.items[props.index].text;
     this.state = {
       isOpen: false,
       inputValue: initialValue,
@@ -142,7 +142,7 @@ class Select extends React.Component<Props, State> {
       let newIndex = index;
 
       // If change is a backspace, set index back to 0
-      if (inputValue.length > newValue.length || index < 0) {
+      if (inputValue.length > newValue.length || index === -1) {
         newIndex = 0;
       }
       // Find index of closest item to search value
