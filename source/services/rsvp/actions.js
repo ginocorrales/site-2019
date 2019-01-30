@@ -22,9 +22,7 @@ function receiveRsvp(data) {
 export function getRsvpData() {
   return dispatch => {
     dispatch(requestRsvp());
-    fetchRsvpData()
-      .then(data => dispatch(receiveRsvp(data)))
-      .catch(() => dispatch(receiveRsvp(null)));
+    fetchRsvpData().then(data => dispatch(receiveRsvp(data)), () => dispatch(receiveRsvp(null)));
   };
 }
 
@@ -49,8 +47,9 @@ export function recieveDecision(decision) {
 
 export function getDecision() {
   return dispatch => {
-    fetchDecision()
-      .then(data => dispatch(recieveDecision(data.status)))
-      .catch(() => dispatch(recieveDecision(null)));
+    fetchDecision().then(
+      data => dispatch(recieveDecision(data.status)),
+      () => dispatch(recieveDecision(null)),
+    );
   };
 }

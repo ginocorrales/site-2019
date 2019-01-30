@@ -7,6 +7,7 @@ import { getGithubOAuthURL } from 'services/api/auth';
 import { getRsvpData, touchData, getDecision } from 'services/rsvp/actions';
 import FormContext from './FormContext';
 import SideBar from './components/SideBar';
+import NotAccepted from './components/NotAccepted';
 import ScrollableForm from './components/Form';
 import { required, validatePane } from './components/Form/check';
 import { checkUnique } from './components/Form/inputValidators';
@@ -225,7 +226,7 @@ class Registration extends Component<Props, State> {
       return <Loader />;
     }
     if (!accepted) {
-      return <h1>RSVP available upon acceptance</h1>;
+      return <NotAccepted />;
     }
     return (
       <div className="registration">
@@ -242,6 +243,8 @@ const mapStateToProps = state => ({
   jwt: state.auth.jwt,
   rsvpValid: state.rsvp.valid,
   rsvpData: state.rsvp.data,
+  decisionValid: state.rsvp.decisionValid,
+  accepted: state.rsvp.accepted,
 });
 
 const mapDispatchToProps = dispatch => ({
